@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let employee of employees"
-            (click)="toggleSidePanel(employee.id)">
+            (click)="toggleSidePanel(employee)">
             <td>{{ employee.pronoun }}</td>
             <td>{{ employee.firstName }}</td>
             <td>{{ employee.lastName }}</td>
@@ -35,7 +35,7 @@
     <div class="popout"
           [ngClass]="sidePanelOpen ? 'open' : 'closed'">
       <h3>Basic</h3>
-      <employee-edit></employee-edit>
+      <employee-edit [employee]="selectedEmployee"></employee-edit>
       <div *ngIf="selectedEmployee">This worked: {{ selectedEmployee.pronoun }}</div>
       <!-- <form *ngIf="selectedEmployee">
         <label for="pronoun">Pronoun</label>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IEmployee } from '../employee';
 import { HttpClient } from '@angular/common/http';
@@ -14,12 +14,12 @@ export class EmployeeEditComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService) { }
 
-  private employeesUrl = 'api/employees';
+  // private employeesUrl = 'api/employees';
 
-  private employee: IEmployee[];
+  @Input() employee: IEmployee[];
 
   ngOnInit() {
-    this.employeeService.getEmployee(id);
+    // this.employeeService.getEmployee(id);
   }
 
   // getEmployeebyId(id: number): Observable<IEmployee> {

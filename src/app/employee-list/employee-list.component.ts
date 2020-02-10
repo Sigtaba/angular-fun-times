@@ -18,6 +18,8 @@ export class EmployeeListComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   sidePanelOpen: boolean = false;
 
+  selectedEmployee: IEmployee = null;
+
   private employees: IEmployee[];
 
   ngOnInit() {
@@ -26,10 +28,11 @@ export class EmployeeListComponent implements OnInit {
     );
   }
 
-  toggleSidePanel(id: number) {
+  toggleSidePanel(employee: IEmployee) {
+    this.selectedEmployee = employee;
     // const selectedEmployee = this.employees[id - 1];
     this.sidePanelOpen = !this.sidePanelOpen;
     // console.log('selected employee', selectedEmployee);
-    this.employeeService.getEmployee(id);
+    // this.employeeService.getEmployee(id);
   }
 }
