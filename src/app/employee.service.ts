@@ -31,6 +31,7 @@ export class EmployeeService {
         tap(data => console.log('getEmployee: ' + JSON.stringify(data)))
       );
   }
+  // <!-- not a single clue what any of the above code does, last console log never works-->
 
   private initializeEmployee(): IEmployee {
     // Return an initialized object

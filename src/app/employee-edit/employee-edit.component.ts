@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IEmployee } from '../employee';
 import { HttpClient } from '@angular/common/http';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -11,16 +12,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmployeeEditComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private employeeService: EmployeeService) { }
 
   private employeesUrl = 'api/employees';
 
   private employee: IEmployee[];
 
   ngOnInit() {
-    // this.getEmployeebyId().subscribe(
-    //   data => this.employee = data
-    // );
+    this.employeeService.getEmployee(id);
   }
 
   // getEmployeebyId(id: number): Observable<IEmployee> {
