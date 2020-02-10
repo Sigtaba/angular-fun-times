@@ -16,7 +16,7 @@ export class EmployeeEditComponent implements OnInit {
 
   // private employeesUrl = 'api/employees';
 
-  @Input() employee: IEmployee[];
+  @Input() employee: IEmployee[]; // changes: added @Input(), made it not "private"
 
   ngOnInit() {
     // this.employeeService.getEmployee(id);
@@ -28,4 +28,8 @@ export class EmployeeEditComponent implements OnInit {
 
   //   );
   // }
+
+  onSave: () => {
+    // update api here!
+  }
 }
