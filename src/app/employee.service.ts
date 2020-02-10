@@ -6,7 +6,9 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 import { IEmployee } from './employee';
 
-
+@Injectable({
+  providedIn: 'root'
+})
 export class EmployeeService {
   private employeesUrl = 'api/employees';
 
@@ -17,10 +19,13 @@ export class EmployeeService {
   }
 
   getEmployee(id: number): Observable<IEmployee> {
+    console.log('got here');
     if (id === 0) {
+      console.log('got here 1');
       return of(this.initializeEmployee());
     }
     const url = `${this.employeesUrl}/${id}`;
+    console.log('got here 2');
     return this.http.get<IEmployee>(url)
       .pipe(
         tap(data => console.log('getEmployee: ' + JSON.stringify(data)))

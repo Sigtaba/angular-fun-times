@@ -1,6 +1,6 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-import { IEmployee } from './employees/employee';
+import { IEmployee } from './employee';
 
 export class EmployeeData implements InMemoryDbService {
 
@@ -31,7 +31,7 @@ export class EmployeeData implements InMemoryDbService {
         status: 'unavailable'
       },
       {
-        id: 2,
+        id: 3,
         pronoun: 'He',
         firstName: 'Eric',
         lastName: 'Wareheim',
