@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IEmployee } from '../employee';
 import { EmployeeService } from '../employee.service';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
@@ -19,8 +19,7 @@ export class EmployeeEditComponent implements OnInit {
               }
 
   @Input() employee: IEmployee;
-
-  // test = this.employee.firstName;
+  @Output() saved = new EventEmitter<IEmployee>();
 
   ngOnInit(): void {
     this.employeeForm = this.fb.group({
@@ -41,23 +40,24 @@ export class EmployeeEditComponent implements OnInit {
 
   saveForm(): void {
     if (this.employeeForm.dirty) {
-      const e = { ...this.employee, ...this.employeeForm.value };
-      console.log('new variable', e)
+      const updatedEmployee = { ...this.employee, ...this.employeeForm.value };
+      console.log('new variable', updatedEmployee)
 
-      if (e.id === 0) {
+      if (updatedEmployee.id === 0) {
         // this.employeeService.createProduct(p)
         //   .subscribe({
         //     next: () => this.onSaveComplete(),
         //     error: err => this.errorMessage = err
         //   });
-        console.log('adding new product');
+        console.log('add new employee');
       } else {
-        this.employeeService.updateEmployees(e)
+        this.employeeService.updateEmployees(updatedEmployee)
           .subscribe({
             next: () => this.onSaveComplete(),
             error: err => this.errorMessage = err
           });
-        console.log('e', e);
+        this.saved.emit(updatedEmployee);
+        console.log('updatedEmployee', updatedEmployee);
         console.log('this dot employee', this.employee);
       }
     } else {
@@ -68,8 +68,4 @@ export class EmployeeEditComponent implements OnInit {
   onSaveComplete(): void {
     console.log('save complete');
   }
-
-  // onSave: () => {
-  //   // update api here!
-  // }
 }

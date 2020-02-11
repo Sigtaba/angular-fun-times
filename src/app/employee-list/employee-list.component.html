@@ -36,7 +36,9 @@
           [ngClass]="sidePanelOpen ? 'open' : 'closed'">
       <button (click)="toggleSidePanel(null)">Close</button>
       <h3>Basic</h3>
-      <employee-edit *ngIf="selectedEmployee" [employee]="selectedEmployee"></employee-edit>
+      <employee-edit *ngIf="selectedEmployee"
+                      [employee]="selectedEmployee"
+                      (saved)="onSaved($event)"></employee-edit>
     </div>
   </div>
 </div>

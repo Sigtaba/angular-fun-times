@@ -23,8 +23,8 @@ export class EmployeeService {
     const url = `${this.employeesUrl}/${employee.id}`;
     return this.http.put<IEmployee>(url, employee, { headers })
       .pipe(
-        tap(() => console.log('updateProduct: ' + employee.id)),
-        // Return the product on an update
+        tap(() => console.log('updateEmployee: ' + employee.id)),
+        // Return the employee on an update
         map(() => employee),
         catchError(this.handleError)
       );

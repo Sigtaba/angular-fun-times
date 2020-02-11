@@ -37,4 +37,11 @@ export class EmployeeListComponent implements OnInit {
     this.selectedEmployee = employee;
     this.sidePanelOpen = !this.sidePanelOpen;
   }
+
+  onSaved(updatedEmployee: IEmployee) {
+    const index = this.employees.findIndex(employee => employee.id === updatedEmployee.id);
+    if (index !== undefined) {
+      this.employees[index] = { ...updatedEmployee };
+    }
+  }
 }
