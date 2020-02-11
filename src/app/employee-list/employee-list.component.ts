@@ -14,6 +14,8 @@ export class EmployeeListComponent implements OnInit {
 
   // tslint:disable-next-line: no-inferrable-types
   pageTitle: string = 'Directory';
+  // tslint:disable-next-line: no-inferrable-types
+  errorMessage: string  = '';
 
   // tslint:disable-next-line: no-inferrable-types
   sidePanelOpen: boolean = false;
@@ -23,9 +25,12 @@ export class EmployeeListComponent implements OnInit {
   private employees: IEmployee[];
 
   ngOnInit() {
-    this.employeeService.getEmployees().subscribe(
-      data => this.employees = data
-    );
+    this.employeeService.getEmployees().subscribe({
+      next: employees => {
+        this.employees = employees;
+      },
+      error: err => this.errorMessage = err
+    });
   }
 
   toggleSidePanel(employee: IEmployee) {
