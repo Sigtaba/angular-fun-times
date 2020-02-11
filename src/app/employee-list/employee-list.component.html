@@ -1,6 +1,7 @@
 <div id="directory">
   <div class="container">
     <h2 class="title">{{pageTitle}}</h2>
+    <button (click)="addEmployee()">Add</button>
     <table *ngIf="employees && employees.length">
       <thead>
         <tr>
@@ -13,11 +14,11 @@
           <th>TOC</th>
           <th>Role</th>
           <th>Status</th>
-          <th>Checkbox</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let employee of employees"
+        <tr *ngFor="let employee of employees; let i = index"
             (click)="toggleSidePanel(employee)">
             <td>{{ employee.pronoun }}</td>
             <td>{{ employee.firstName }}</td>
@@ -28,7 +29,7 @@
             <td>{{ employee.toc }}</td>
             <td>{{ employee.role }}</td>
             <td>{{ employee.status }}</td>
-            <td>[ ]</td>
+            <button (click)="deleteEmployee(i)">Delete</button>
         </tr>
       </tbody>
     </table>

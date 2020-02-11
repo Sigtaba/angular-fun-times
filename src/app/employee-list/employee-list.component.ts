@@ -16,7 +16,6 @@ export class EmployeeListComponent implements OnInit {
   pageTitle: string = 'Directory';
   // tslint:disable-next-line: no-inferrable-types
   errorMessage: string  = '';
-
   // tslint:disable-next-line: no-inferrable-types
   sidePanelOpen: boolean = false;
 
@@ -43,5 +42,15 @@ export class EmployeeListComponent implements OnInit {
     if (index !== undefined) {
       this.employees[index] = { ...updatedEmployee };
     }
+  }
+
+  deleteEmployee(i: number) {
+    this.employees.splice(i, 1)
+  }
+
+  addEmployee() {
+    this.sidePanelOpen = !this.sidePanelOpen;
+    this.selectedEmployee = this.employeeService.initializeEmployee();
+    console.log(this.selectedEmployee);
   }
 }

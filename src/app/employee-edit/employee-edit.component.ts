@@ -41,15 +41,14 @@ export class EmployeeEditComponent implements OnInit {
   saveForm(): void {
     if (this.employeeForm.dirty) {
       const updatedEmployee = { ...this.employee, ...this.employeeForm.value };
-      console.log('new variable', updatedEmployee)
 
       if (updatedEmployee.id === 0) {
-        // this.employeeService.createProduct(p)
-        //   .subscribe({
-        //     next: () => this.onSaveComplete(),
-        //     error: err => this.errorMessage = err
-        //   });
-        console.log('add new employee');
+        this.employeeService.createEmployee(updatedEmployee)
+          .subscribe({
+            next: () => this.onSaveComplete(),
+            error: err => this.errorMessage = err
+          });
+        console.log('added new employee');
       } else {
         this.employeeService.updateEmployees(updatedEmployee)
           .subscribe({

@@ -28,7 +28,17 @@ export class EmployeeService {
         map(() => employee),
         catchError(this.handleError)
       );
-  } /* this part taken straight from tutorial, need to study this a bit */
+  }
+
+  createEmployee(employee: IEmployee): Observable<IEmployee> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    employee.id = null;
+    return this.http.post<IEmployee>(this.employeesUrl, employee, { headers })
+      .pipe(
+        tap(data => console.log('createEmployee: ' + JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  } /* would love if someone could explain how this works, it was taken from tutorial^*/
 
   private handleError(err) {
     // in a real world app, we may send the server to some remote logging infrastructure
@@ -46,18 +56,18 @@ export class EmployeeService {
     return throwError(errorMessage);
   } /* this part taken straight from tutorial, need to study this a bit */
 
-  // private initializeEmployee(): IEmployee {
-  //   return {
-  //     id: 0,
-  //     pronoun: null,
-  //     firstName: null,
-  //     lastName: null,
-  //     nickname: null,
-  //     pronounciation: null,
-  //     jobTitle: null,
-  //     toc: null,
-  //     role: null,
-  //     status: null,
-  //   };
-  // } /* will come back if I get to the add employee functionality */
+  initializeEmployee(): IEmployee {
+    return {
+      id: 0,
+      pronoun: null,
+      firstName: null,
+      lastName: null,
+      nickname: null,
+      pronounciation: null,
+      jobTitle: null,
+      toc: null,
+      role: null,
+      status: null,
+    };
+  }
 }
