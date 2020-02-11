@@ -1,34 +1,59 @@
 <div>
-  <form>
-<span></span>
+  <form *ngIf="employee"
+        [formGroup]="employeeForm"
+        (ngSubmit)="saveForm()">
+    <h3>{{ employee.firstName }} {{ employee.lastName }}</h3>
 
     <label for="pronoun">Pronoun</label>
-    <input type="text" value="{employee.pronoun}"/>
+    <input type="text"
+            id="pronoun"
+            formControlName="pronoun"/>
 
     <label for="firstName">First Name</label>
-    <input type="text" />
+    <input type="text"
+            id="firstName"
+            formControlName="firstName"/>
 
     <label for="lastName">Last Name</label>
-    <input type="text" />
+    <input type="text"
+            id="lastName"
+            formControlName="lastName"/>
 
     <label for="nickname">Nickname</label>
-    <input type="text" />
+    <input type="text"
+            id="nickname"
+            formControlName="nickname"/>
 
     <label for="pronounciation">Pronounciation</label>
-    <input type="text" />
+    <input type="text"
+            id="pronounciation"
+            formControlName="pronounciation"/>
 
     <label for="jobTitle">Job Title</label>
-    <input type="text" />
+    <input type="text"
+            id="jobTitle"
+            formControlName="jobTitle"/>
 
     <label for="toc">Type of Call</label>
-    <input type="text" />
+    <input type="text"
+            id="toc"
+            formControlName="toc"/>
 
     <label for="role">Role</label>
-    <input type="text" />
+    <input type="text"
+            id="role"
+            formControlName="role"/>
 
     <label for="status">Status</label>
-    <input type="text" />
+    <input type="text"
+            id="status"
+            formControlName="status"/>
 
-    <!-- add a save button with a click handler in employee-edit.component.ts -->
+    <button type="submit"
+            [title]="employeeForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+            [disabled]="!employeeForm.valid">
+      Save
+    </button>
+    
   </form>
 </div>

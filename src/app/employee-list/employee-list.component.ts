@@ -30,9 +30,6 @@ export class EmployeeListComponent implements OnInit {
 
   toggleSidePanel(employee: IEmployee) {
     this.selectedEmployee = employee;
-    // const selectedEmployee = this.employees[id - 1];
     this.sidePanelOpen = !this.sidePanelOpen;
-    // console.log('selected employee', selectedEmployee);
-    // this.employeeService.getEmployee(id);
   }
 }

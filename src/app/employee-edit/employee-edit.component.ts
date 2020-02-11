@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 import { IEmployee } from '../employee';
-import { HttpClient } from '@angular/common/http';
 import { EmployeeService } from '../employee.service';
+import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -12,24 +11,65 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeEditComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService) { }
+  errorMessage: string;
+  employeeForm: FormGroup;
 
-  // private employeesUrl = 'api/employees';
+  constructor(private fb: FormBuilder,
+              private employeeService: EmployeeService) {
+              }
 
-  @Input() employee: IEmployee[]; // changes: added @Input(), made it not "private"
+  @Input() employee: IEmployee;
 
-  ngOnInit() {
-    // this.employeeService.getEmployee(id);
+  // test = this.employee.firstName;
+
+  ngOnInit(): void {
+    this.employeeForm = this.fb.group({
+      pronoun: this.employee.pronoun,
+      firstName: this.employee.firstName,
+      lastName: this.employee.lastName,
+      nickname: this.employee.nickname,
+      pronounciation: this.employee.pronounciation,
+      jobTitle: this.employee.jobTitle,
+      toc: this.employee.toc,
+      role: this.employee.role,
+      status: this.employee.status,
+    });
+
+    const test = this.employee.firstName;
+    console.log(test);
   }
 
-  // getEmployeebyId(id: number): Observable<IEmployee> {
-  //   const url = `${this.employeesUrl}/${id}`;
-  //   return this.http.get<IEmployee>(url).pipe(
+  saveForm(): void {
+    if (this.employeeForm.dirty) {
+      const e = { ...this.employee, ...this.employeeForm.value };
+      console.log('new variable', e)
 
-  //   );
+      if (e.id === 0) {
+        // this.employeeService.createProduct(p)
+        //   .subscribe({
+        //     next: () => this.onSaveComplete(),
+        //     error: err => this.errorMessage = err
+        //   });
+        console.log('adding new product');
+      } else {
+        this.employeeService.updateEmployees(e)
+          .subscribe({
+            next: () => this.onSaveComplete(),
+            error: err => this.errorMessage = err
+          });
+        console.log('e', e);
+        console.log('this dot employee', this.employee);
+      }
+    } else {
+      this.onSaveComplete();
+    }
+  }
+
+  onSaveComplete(): void {
+    console.log('save complete');
+  }
+
+  // onSave: () => {
+  //   // update api here!
   // }
-
-  onSave: () => {
-    // update api here!
-  }
 }
