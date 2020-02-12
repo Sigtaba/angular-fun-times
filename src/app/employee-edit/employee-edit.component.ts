@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IEmployee } from '../employee';
 import { EmployeeService } from '../employee.service';
-import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -33,38 +33,18 @@ export class EmployeeEditComponent implements OnInit {
       role: this.employee.role,
       status: this.employee.status,
     });
-
-    const test = this.employee.firstName;
-    console.log(test);
   }
 
   saveForm(): void {
     if (this.employeeForm.dirty) {
       const updatedEmployee = { ...this.employee, ...this.employeeForm.value };
+      this.saved.emit(updatedEmployee);
 
-      if (updatedEmployee.id === 0) {
-        this.employeeService.createEmployee(updatedEmployee)
-          .subscribe({
-            next: () => this.onSaveComplete(),
-            error: err => this.errorMessage = err
-          });
-        console.log('added new employee');
-      } else {
-        this.employeeService.updateEmployees(updatedEmployee)
-          .subscribe({
-            next: () => this.onSaveComplete(),
-            error: err => this.errorMessage = err
-          });
-        this.saved.emit(updatedEmployee);
-        console.log('updatedEmployee', updatedEmployee);
-        console.log('this dot employee', this.employee);
-      }
-    } else {
-      this.onSaveComplete();
+      // if (updatedEmployee.id === 0) {
+      //   this.employeeService.createEmployee(updatedEmployee).subscribe();
+      // } else {
+      //   this.employeeService.updateEmployees(updatedEmployee).subscribe();
+      // }
     }
-  }
-
-  onSaveComplete(): void {
-    console.log('save complete');
   }
 }

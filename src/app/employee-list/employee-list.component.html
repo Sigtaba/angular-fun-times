@@ -1,7 +1,12 @@
 <div id="directory">
   <div class="container">
-    <h2 class="title">{{pageTitle}}</h2>
-    <button (click)="addEmployee()">Add</button>
+    <div id="secondaryNav">
+      <div id="tabs">
+        <button class="tab selected"> {{ pageTitle }} ({{ employees.length }})</button>
+        <button class="tab disabled" disabled>Call Types</button>
+      </div>
+      <button id="addButton" (click)="addEmployee()">Add</button>
+    </div>
     <table *ngIf="employees && employees.length">
       <thead>
         <tr>

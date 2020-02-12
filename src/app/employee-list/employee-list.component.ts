@@ -12,13 +12,9 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService) { }
 
-  // tslint:disable-next-line: no-inferrable-types
-  pageTitle: string = 'Directory';
-  // tslint:disable-next-line: no-inferrable-types
-  errorMessage: string  = '';
-  // tslint:disable-next-line: no-inferrable-types
-  sidePanelOpen: boolean = false;
-
+  pageTitle = 'Directory';
+  errorMessage  = '';
+  sidePanelOpen = false;
   selectedEmployee: IEmployee = null;
 
   private employees: IEmployee[];
@@ -39,18 +35,19 @@ export class EmployeeListComponent implements OnInit {
 
   onSaved(updatedEmployee: IEmployee) {
     const index = this.employees.findIndex(employee => employee.id === updatedEmployee.id);
-    if (index !== undefined) {
+    if (index > -1) {
       this.employees[index] = { ...updatedEmployee };
+    } else {
+      this.employees.push(updatedEmployee);
     }
   }
 
   deleteEmployee(i: number) {
-    this.employees.splice(i, 1)
+    this.employees.splice(i, 1);
   }
 
   addEmployee() {
     this.sidePanelOpen = !this.sidePanelOpen;
     this.selectedEmployee = this.employeeService.initializeEmployee();
-    console.log(this.selectedEmployee);
   }
 }
