@@ -2,7 +2,7 @@
   <div class="container">
     <div id="secondaryNav">
       <div id="tabs">
-        <button class="tab selected"> {{ pageTitle }} ({{ employees.length }})</button>
+        <button class="tab selected"> {{ pageTitle }} ({{ employees ? employees.length : '' }})</button>
         <button class="tab disabled" disabled>Call Types</button>
       </div>
       <button id="addButton" (click)="addEmployee()">Add</button>
