@@ -2,12 +2,13 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IEmployee } from '../employee';
 import { EmployeeService } from '../employee.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatFormFieldControl } from '@angular/material';
 
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'employee-edit',
   templateUrl: './employee-edit.component.html',
-  styleUrls: ['./employee-edit.component.sass']
+  styleUrls: ['./employee-edit.component.sass'],
 })
 export class EmployeeEditComponent implements OnInit {
 

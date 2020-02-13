@@ -1,44 +1,89 @@
 #directory
+  background: #FCFBFA
   height: calc(100vh - 87.4px)
   overflow: hidden
 
 #secondaryNav
   display: flex
   justify-content: space-between
+  padding: 0 20px
 
 #tabs
   display: flex
+  padding-top: 10px
 
 .tab
-  border: none
-  margin: 0 20px
   background: transparent
-  padding: 5px 10px
+  border: none
+  margin-right: 40px
+  padding: 10px 10px
 
 .selected
   border-bottom: 5px solid black
 
-#button
-  align-self: flex-end
+#addButton
+  background: transparent
+  border: none
+  float: right
+  margin: 0
+  padding: 0
+
+#addButton img
+  width: 20px
+
+#closeButton
+  background: transparent
+  border: none
+  float: right
+  margin: 0
+  padding: 0
+
+#closeButton img
+  width: 20px
 
 .title
   z-index: 10
 
 .container
-  position: relative
   height: 100%
+  position: relative
+
+table
+  border-collapse: collapse
+  color: #626A69
+  padding: 0 20px
+  width: 100%
+
+thead
+  background: #F7F6F5
+  border-top: 1px solid #EFEEE6
+  color: #BBBBB0
+  font-size: 12px
+  text-transform: uppercase
+
+th
+  padding: 20px
+  text-align: left
+
+
+tr
+  box-shadow: 0px 1px #EBE9E7
+
+td
+  padding: 10px 20px 10px 20px
 
 .popout
-  background: red
+  background: #FCFBFA
+  border-left: 2px solid #E9E9E6
   font-color: blue
   height: 100%
+  padding: 20px
   position: absolute
   right: 0
   top: 0
   width: 75%
-
-.open
   transform: translateX(0)
+  transition: transform 350ms ease-out
 
 .closed
   transform: translateX(100%)

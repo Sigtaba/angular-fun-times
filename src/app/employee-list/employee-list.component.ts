@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IEmployee } from '../employee';
 import { EmployeeService } from '../employee.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { ModalComponent } from 'app/modal/modal.component';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -10,7 +12,7 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeListComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private dialog: MatDialog) { }
 
   pageTitle = 'Directory';
   errorMessage  = '';
@@ -50,4 +52,29 @@ export class EmployeeListComponent implements OnInit {
     this.sidePanelOpen = !this.sidePanelOpen;
     this.selectedEmployee = this.employeeService.initializeEmployee();
   }
+
+  openDialog(e) {
+    const dialogConfig = new MatDialogConfig();
+
+    console.log(e.clientX);
+    console.log(e.clientY);
+    const carrotLocation = e.clientY;
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.position = {
+      top: `${carrotLocation}px`
+    };
+
+    dialogConfig.data = {
+        id: 1,
+        title: 'Angular For Beginners'
+    };
+
+    const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+        data => console.log('Dialog output:', data)
+    );
+}
 }

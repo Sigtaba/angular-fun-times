@@ -43,6 +43,42 @@ export class InMemoryDataService implements InMemoryDbService {
         toc: 'Current Clients',
         role: 'Billing',
         status: 'unavailable'
+      },
+      {
+        id: 4,
+        pronoun: 'He',
+        firstName: 'Jerry',
+        lastName: 'Abatgis',
+        nickname: '',
+        pronounciation: 'JEHR-REE',
+        jobTitle: 'Son',
+        toc: 'Potential new client',
+        role: 'RP',
+        status: 'available'
+      },
+      {
+        id: 5,
+        pronoun: 'He',
+        firstName: 'Tim',
+        lastName: 'Heidecker',
+        nickname: 'Timmy',
+        pronounciation: '',
+        jobTitle: 'Comedian',
+        toc: 'MISC',
+        role: '',
+        status: 'unavailable'
+      },
+      {
+        id: 6,
+        pronoun: 'He',
+        firstName: 'Eric',
+        lastName: 'Wareheim',
+        nickname: 'Rick rick rick rick',
+        pronounciation: '',
+        jobTitle: 'Comedian',
+        toc: 'Current Clients',
+        role: 'Billing',
+        status: 'unavailable'
       }
     ];
     return {employees};
